@@ -1,0 +1,700 @@
+:root {
+    --accent: #2a9d8f;
+    --muted: #6b7280;
+    --bg: #f7fafc;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  /* --- Global --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  h1, h2 {
+    color: #2d3748;
+  }
+  
+  a, button {
+    font-family: inherit;
+  }
+  
+  /* --- Header --- */
+  header {
+    background: #4a90e2;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  header button {
+    background: #fff;
+    color: #4a90e2;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  header button:hover {
+    background: #e6f0ff;
+  }
+  
+  /* --- Controls --- */
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 2rem;
+  }
+  
+  .controls input, .controls select {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    flex: 1;
+    transition: all 0.2s ease;
+  }
+  
+  .controls input:focus, .controls select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+  }
+  
+  /* --- Card Grid --- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+    gap: 1.5rem;
+    margin: 0 2rem 2rem 2rem;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .card-body .meta {
+    color: #718096;
+    font-size: 0.85rem;
+  }
+  
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #c6f6d5;
+    color: #2f855a;
+  }
+  
+  .card .btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #4a90e2;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+  
+  .card .btn:hover {
+    background: #357ab8;
+  }
+  
+  .card .btn.secondary {
+    background: #edf2f7;
+    color: #2d3748;
+  }
+  
+  .card .btn.secondary:hover {
+    background: #e2e8f0;
+  }
+  
+  /* --- Modal --- */
+  .overlay {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width: 100%; height:100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .overlay.show {
+    display: flex;
+  }
+  
+  .modal {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  
+  .modal h2 {
+    margin-top: 0;
+  }
+  
+  .modal img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  /* --- Form --- */
+  .modal form input,
+  .modal form textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: all 0.2s ease;
+  }
+  
+  .modal form input:focus,
+  .modal form textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+  }
+
+  header img {
+    height: 50px;
+    width: auto;
+  }
+  
+  
+  /* Buttons in modal */
+  .modal form .btn {
+    margin-top: 0.5rem;
+  }
+  
+  .modal form .btn.secondary {
+    background: #edf2f7;
+    color: #2d3748;
+  }
+  
+  .modal form .btn.secondary:hover {
+    background: #e2e8f0;
+  }
+  
+  /* --- Admin Panel --- */
+  #adminPanel .application {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.5rem 0;
+  }
+  
+  /* --- Footer --- */
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #4a90e2;
+    color: #fff;
+    margin-top: auto;
+    font-size: 0.9rem;
+  }
+  
+  
+  body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin: 0;
+    background: var(--bg);
+    color: #0f172a;
+  }
+  
+  /* Galvene */
+  header {
+    background: white;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e6eef3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  main {
+    padding: 1rem;
+  }
+  
+  /* Meklēšana un filtri */
+  .controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .search, .select {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #d2e0e8;
+    background: white;
+  }
+  
+  /* Dzīvnieku kartītes */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(11, 22, 39, 0.06);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 0.75rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .meta {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  
+  /* Pogas */
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 0;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .btn:hover {
+    background: #23867b;
+  }
+  
+  .btn.secondary {
+    background: #edf7f6;
+    color: var(--accent);
+    border: 1px solid rgba(42, 157, 143, 0.2);
+  }
+  
+  footer {
+    padding: 1rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    color: black;
+  }
+  
+  /* Modal logi */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 7, 18, 0.45);
+    padding: 1rem;
+  }
+  
+  .overlay.show {
+    display: flex;
+  }
+  
+  .modal {
+    background: white;
+    width: 100%;
+    max-width: 680px;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 12px 40px rgba(3, 7, 18, 0.2);
+  }
+  
+  label {
+    display: block;
+    font-weight: 600;
+    margin: 0.5rem 0 0.25rem;
+  }
+  
+  input[type=text], input[type=email], textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #e6eef3;
+  }
+  
+  .row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  @media (max-width: 520px) {
+    .row {
+      flex-direction: column;
+    }
+  }
+  
+  /* Statusi */
+  .status {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    background: #f0fdf7;
+    color: #086754;
+    font-weight: 600;
+  }
+  
+  /* Accessibility */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  /* Navigācija */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4a90e2;
+    padding: 1rem;
+    color: rgb(172, 168, 168);
+  }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+  }
+  .nav-links a {
+    color: rgb(14, 12, 12);
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-links a:hover {
+    background: #007aff;
+    color: #ffd700;
+    border-radius: 4px;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    padding: 100px;
+    margin: 10px;
+    background: #4a90e2;
+    list-style: none;
+    padding: 0.5rem;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+   padding: 10 15px;
+    margin: 10px;
+  }
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Kartītes */
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .card {
+    background: linear-gradient(to bottom right, #0f0e0e, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px;
+    overflow: hidden;
+  }
+  .card:hover {
+    animation: lift 0.4s forwards;
+  }
+  @keyframes lift {
+    to {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+  }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .card:hover img {
+    transform: scale(1.05);
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .card .btn {
+    background: linear-gradient(to right, #4a90e2, #007aff);
+    color: rgb(17, 16, 16);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .card .btn:hover {
+    background: linear-gradient(to right, #007aff, #4a90e2);
+    transform: scale(1.05);
+  }
+  
+  /* Modālais logs */
+  .overlay {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .overlay.show {
+    display: flex;
+  }
+  .modal {
+    background: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+  }
+  
+
+ 
+
+    /* 🌙 Nakts režīma stils */
+    body.dark-mode {
+      background: #121212;
+      color: #f5f5f5;
+    }
+
+    body.dark-mode footer {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: rgb(5, 5, 5);
+    }
+
+    .btn.secondary {
+      background: #eee;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #fafafa;
+      border-bottom: 1px solid #e2dfdf;
+    }
+
+    body.dark-mode header {
+      background: #8f8d8d;
+      border-color: #000000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      color: black;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .card {
+      background: #e4dada;
+      color: #f5f5f5;
+      border-color: #161616;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  /* ---------- 📱 Mobilā skata pielāgojumi ---------- */
+@media (max-width: 768px) {
+  /* Saglabā header struktūru, bet nodrošina, ka viss labi satiekas */
+  header {
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  #theme-toggle {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* Centra saturs */
+  main {
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  /* Meklēšanas un filtru zona */
+  .controls {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem auto;
+  }
+
+  .controls input,
+  .controls select {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  /* Kartīšu konteineris */
+  .grid,
+  .card-container {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 340px;
+  }
+
+  .card img {
+    height: 180px;
+  }
+
+  /* Navigācijas josla */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

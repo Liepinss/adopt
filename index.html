@@ -1,0 +1,201 @@
+
+
+    <!DOCTYPE html>
+    <html lang="lv">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzīvnieku adoptācijas centrs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; display:flex; flex-direction:column; min-height:100vh; }
+        main { flex:1; padding:1rem; }
+        footer { text-align:center; padding:1rem; background:#f2f2f2; }
+        .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000; }
+        .overlay.show { display:flex; }
+        .modal { background:#fff; padding:1rem; border-radius:8px; max-width:400px; width:90%; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:1rem; }
+        .card { border:1px solid #ccc; border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
+        .card img { width:100%; height:200px; object-fit:cover; }
+        .card-body { padding:0.5rem 1rem; flex:1; display:flex; flex-direction:column; }
+        .pill { background:#c6f6d5; padding:0.2rem 0.5rem; border-radius:12px; font-size:0.8rem; }
+        .btn { padding:0.5rem 1rem; border:none; border-radius:4px; cursor:pointer; }
+        .btn.secondary { background:#eee; color:#333; }
+        .application { border-bottom:1px solid #ddd; padding:0.5rem 0; }
+    </style>
+    </head>
+    <body>
+        
+
+    <header>
+      <header>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img src="logo.png" alt="Logo" style="height:50px;">
+          <h1>Dzīvnieku adoptācijas centrs</h1>
+        </div>
+        <button id="theme-toggle" class="btn secondary">🌙 Nakts režīms</button>
+        <button id="adminBtn" class="btn secondary">Admins</button>
+      </header>
+    
+     
+      
+    
+    
+      <script>
+        const toggleBtn = document.getElementById("theme-toggle");
+        const body = document.body;
+    
+        // Ielādē saglabāto tēmu no localStorage
+        if (localStorage.getItem("theme") === "dark") {
+          body.classList.add("dark-mode");
+          toggleBtn.textContent = "☀️ Dienas režīms";
+        }
+    
+        // Noklikšķinot pārslēdz tēmu
+        toggleBtn.addEventListener("click", () => {
+          body.classList.toggle("dark-mode");
+    
+          if (body.classList.contains("dark-mode")) {
+            toggleBtn.textContent = "☀️ Dienas režīms";
+            localStorage.setItem("theme", "dark");
+          } else {
+            toggleBtn.textContent = "🌙 Nakts režīms";
+            localStorage.setItem("theme", "light");
+          }
+        });
+      </script>
+    </body>
+          
+
+                
+  
+          </header>
+
+            <ul class="nav-links">
+                <li><a href="#">Centrs</a></li>
+              <li><a href="#">Sākums</a></li>
+              <li><a href="#">Par mums</a></li>
+              <li class="dropdown">
+                <a href="#">Pakalpojumi</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Adoptēt</a></li>
+                  <li><a href="#">Ziedot</a></li>
+                  <li><a href="#">Brīvprātīgais darbs</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Kontakti</a></li>
+            </ul>
+            <div class="hamburger">&#9776;</div>
+          </nav>
+          <div id="infoModal" class="overlay">
+            <div class="modal">
+              <h2>Informācija par dzīvnieku</h2>
+              <p>Šeit būs detalizēta informācija par izvēlēto dzīvnieku.</p>
+              <button class="btn secondary" onclick="closeModal()">Aizvērt</button>
+              <button id="darkModeToggle" class="btn">
+              </button>
+              
+
+            </div>
+          </div>
+
+    </header>
+
+    <main>
+        <div class="controls">
+        <input type="text" id="search" class="search" placeholder="Meklēt dzīvniekus...">
+        <select id="species" class="select">
+            <option value="all">Visi</option>
+        </select>
+        </div>
+        
+
+        <section id="list" class="grid" aria-live="polite">
+        <!-- Dzīvnieku kartītes ielādēsies ar JS -->
+        </section>
+    </main>
+   
+      
+      <div id="infoModal" class="overlay">
+        <div class="modal">
+          <h2>Informācija par dzīvnieku</h2>
+          <p>Šeit būs detalizēta informācija par izvēlēto dzīvnieku.</p>
+          <button class="btn secondary" onclick="closeModal()">Aizvērt</button>
+        </div>
+      </div>
+          <!-- Vēl 2 kartītes līdzīgi -->
+        </section>
+      </main>
+    <footer>
+        E-pasts adopt.centrs@gmail.com
+        Tel. nr +371 28646764
+    </footer>
+
+    <footer>
+        &copy; 2025 Dzīvnieku adoptācijas centrs. Visi tiesības aizsargātas.
+    </footer>
+    
+    <!-- Adoptācijas modal -->
+    <div id="modal" class="overlay" aria-hidden="true">
+        <div class="modal">
+        <h2 id="modalTitle">Adoptēt</h2>
+        <img id="animalImg" src="" alt="" style="max-height:200px; width:100%; object-fit:cover; border-radius:8px; margin-bottom:1rem; display:none;">
+        <form id="adoptForm">
+            <input type="hidden" id="animalId">
+
+            <label for="adopterName">Vārds, Uzvārds</label>
+            <input type="text" id="adopterName" required>
+
+            <label for="adopterEmail">E-pasts</label>
+            <input type="email" id="adopterEmail" required>
+
+            <label for="adopterPhone">Tālruņa numurs</label>
+            <input type="tel" id="adopterPhone" placeholder="+371..." required>
+
+            <label for="message">Ziņa</label>
+            <textarea id="message" rows="3" placeholder="Kāpēc vēlies adoptēt?" required></textarea>
+
+            <div style="margin-top:1rem; display:flex; gap:0.5rem; justify-content:flex-end">
+            <button type="submit" class="btn">Nosūtīt</button>
+            <button type="button" class="btn secondary" id="cancelForm">Atcelt</button>
+            </div>
+        </form>
+        <button id="closeModal" class="btn secondary" style="margin-top:1rem;">Aizvērt</button>
+        </div>
+    </div>
+
+    <!-- Admin panelis -->
+    <div id="adminPanel" class="overlay" aria-hidden="true">
+        <div class="modal">
+        <h2>Adopcijas pieteikumi</h2>
+        <div id="applications">
+            <!-- Pieteikumi no localStorage -->
+        </div>
+        <button id="closeAdmin" class="btn secondary" style="margin-top:1rem;">Aizvērt</button>
+        </div>
+    </div>
+
+    <script src="js.js">
+        const toggleBtn = document.getElementById("theme-toggle");
+        const body = document.body;
+
+        // Load saved theme
+        if(localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            toggleBtn.textContent = "☀️ Dienas režīms";
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+
+            if(body.classList.contains("dark-mode")) {
+                toggleBtn.textContent = "☀️ Dienas režīms";
+                localStorage.setItem("theme", "dark");
+            } else {
+                toggleBtn.textContent = "🌙 Nakts režīms";
+                localStorage.setItem("theme", "light");
+            }
+        });
+    </script>
+    </body>
+    </html>
